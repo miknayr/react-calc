@@ -2,15 +2,14 @@ import React, { Component } from 'react'
 
 
 export default class Calculator extends Component {
-  constructor(props) {
-    super()
-    this.state = {
+  state = {
+
         num1: 0,
         num2: 0,
         total: 0
 
     }
-  } 
+  
 
   setNum = (e, num) => {
     this.setState({ [num]: e.target.value});
@@ -40,11 +39,12 @@ export default class Calculator extends Component {
 
 
   render() {
+
     return (
       <div className="container">
         <h1>Math with React!</h1>
 
-        <div className="add">
+         <div className="math">
           <input type="number"
             name="num1"
             placeholder="Enter your first number"
@@ -61,13 +61,13 @@ export default class Calculator extends Component {
             onChange={ (e) => this.setNum(e, 'num2') }
           />
 
+
+          <h3>{ this.state.total }</h3>
        
           <button onClick={(e) => this.sumNum(e)}>+ =</button>
           <button onClick={(e) => this.subNum(e)}>- =</button>
           <button onClick={(e) => this.multiNum(e)}>* =</button>
           <button onClick={(e) => this.divNum(e)}>/ =</button>
-
-          <h3>{ this.state.total }</h3>
         </div>
       </div>
     )
