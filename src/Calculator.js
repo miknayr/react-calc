@@ -1,44 +1,32 @@
-import React, { Component } from 'react'
+import { 
+  useState
+
+} from 'react'
+
+const Calculator = () => {
 
 
-export default class Calculator extends Component {
-  state = {
-
-        num1: 0,
-        num2: 0,
-        total: 0
-
-    }
+  const [numOne, setNumOne] = useState(0)
+  const [numTwo, setNumTwo] = useState(0)
+  const [totalNum, setTotalNum] = useState(0)
   
 
-  setNum = (e, num) => {
-    this.setState({ [num]: e.target.value});
+  const sumNum = (e) => {
+    let newSum = Number(numOne) + Number(numTwo)
+    setTotalNum(newSum)
   }
-
-  sumNum = (e) => {
-    console.log(this.state)
-    let newSum = Number(this.state.num1) + Number(this.state.num2)
-    this.setState({total: newSum})
+  const subNum = (e) => {
+    let newSub = Number(numOne) - Number(numTwo)
+    setTotalNum(newSub)
   }
-  subNum = (e) => {
-    console.log(this.state)
-    let newSub = Number(this.state.num1) - Number(this.state.num2)
-    this.setState({total: newSub})
+  const multiNum = (e) => {
+    let newMulti = Number(numOne) * Number(numTwo)
+    setTotalNum(newMulti)
   }
-  multiNum = (e) => {
-    console.log(this.state)
-    let newMulti = Number(this.state.num1) * Number(this.state.num2)
-    this.setState({total: newMulti})
+  const divNum = (e) => {
+     let newDiv = Number(numOne) / Number(numTwo)
+     setTotalNum(newDiv)
   }
-  divNum = (e) => {
-    console.log(this.state)
-    let newDiv = Number(this.state.num1) / Number(this.state.num2)
-    this.setState({total: newDiv})
-  }
-
-
-
-  render() {
 
     return (
       <div className="container">
@@ -46,30 +34,32 @@ export default class Calculator extends Component {
 
          <div className="math">
           <input type="number"
-            name="num1"
+            name="numOne"
             placeholder="Enter your first number"
-            value={this.state.num1}
-            onChange={ (e) => this.setNum(e, 'num1') }
+            value={numOne}
+            onChange={ (e) => setNumOne(e.target.value) }
           />
 
           <span> and </span>
 
           <input type="number"
-            name="num2"
+            name="numTwo"
             placeholder="Enter your second number"
-            value={this.state.num2}
-            onChange={ (e) => this.setNum(e, 'num2') }
+            value={numTwo}
+            onChange={ (e) => setNumTwo(e.target.value) }
           />
 
 
-          <h3>{ this.state.total }</h3>
+          <h3>{ totalNum }</h3>
        
-          <button onClick={(e) => this.sumNum(e)}>+ =</button>
-          <button onClick={(e) => this.subNum(e)}>- =</button>
-          <button onClick={(e) => this.multiNum(e)}>* =</button>
-          <button onClick={(e) => this.divNum(e)}>/ =</button>
+          <button onClick={(e) => sumNum(e)}>+ =</button>
+          <button onClick={(e) => subNum(e)}>- =</button>
+          <button onClick={(e) => multiNum(e)}>* =</button>
+          <button onClick={(e) => divNum(e)}>/ =</button>
         </div>
       </div>
     )
-  }
+  
 }
+
+export default Calculator
